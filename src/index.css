@@ -1,0 +1,437 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fontes Premium */
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/fonts/SF-Pro-Display-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('/fonts/SF-Pro-Display-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Text';
+  src: url('/fonts/SF-Pro-Text-Black.otf') format('opentype');
+  font-weight: 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Rounded';
+  src: url('/fonts/SF-Pro-Rounded-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neulis Alt';
+  src: url('/fonts/NeulisAlt-Black.otf') format('opentype');
+  font-weight: 900;
+  font-display: swap;
+}
+
+/* Variáveis CSS para temas */
+:root {
+  /* Tema Dark (padrão) */
+  --bg-primary: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  --bg-secondary: rgba(255, 255, 255, 0.1);
+  --bg-card: rgba(255, 255, 255, 0.15);
+  --bg-card-hover: rgba(255, 255, 255, 0.25);
+  --text-primary: rgba(255, 255, 255, 0.95);
+  --text-secondary: rgba(255, 255, 255, 0.8);
+  --text-muted: rgba(255, 255, 255, 0.6);
+  --border-color: rgba(255, 255, 255, 0.2);
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --accent-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.theme-light {
+  --bg-primary: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);
+  --bg-secondary: rgba(255, 255, 255, 0.8);
+  --bg-card: rgba(255, 255, 255, 0.9);
+  --bg-card-hover: rgba(255, 255, 255, 0.95);
+  --text-primary: rgba(15, 23, 42, 0.95);
+  --text-secondary: rgba(51, 65, 85, 0.9);
+  --text-muted: rgba(100, 116, 139, 0.8);
+  --border-color: rgba(203, 213, 225, 0.6);
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    font-weight: 400;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+
+  /* Scrollbar personalizada */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+  }
+}
+
+@layer components {
+  /* Glass morphism cards */
+  .glass-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px var(--shadow-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-card:hover {
+    background: var(--bg-card-hover);
+    transform: translateY(-1px);
+  }
+
+  .glass-card-dark {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px var(--shadow-color);
+  }
+
+  /* Floating cards para tarefas */
+  .task-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px var(--shadow-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .task-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px var(--shadow-color);
+    background: var(--bg-card-hover);
+  }
+
+  /* Sticky notes com design premium */
+  .note-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 6px 25px var(--shadow-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .note-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--accent-gradient);
+  }
+
+  .note-card:hover {
+    transform: translateY(-3px) scale(1.01);
+    box-shadow: 0 12px 40px var(--shadow-color);
+    background: var(--bg-card-hover);
+  }
+
+  /* Cores das notas com gradientes adaptativos */
+  .note-yellow {
+    background: linear-gradient(135deg, rgba(255, 235, 59, 0.2) 0%, rgba(255, 193, 7, 0.15) 100%);
+  }
+
+  .note-yellow::before {
+    background: linear-gradient(90deg, #fbbf24, #f59e0b);
+  }
+
+  .note-blue {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(99, 102, 241, 0.15) 100%);
+  }
+
+  .note-blue::before {
+    background: linear-gradient(90deg, #3b82f6, #6366f1);
+  }
+
+  .note-green {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(101, 163, 13, 0.15) 100%);
+  }
+
+  .note-green::before {
+    background: linear-gradient(90deg, #22c55e, #65a30d);
+  }
+
+  /* Botões premium */
+  .btn-primary {
+    background: var(--accent-gradient);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 500;
+    font-family: 'SF Pro Display', sans-serif;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    font-size: 14px;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  }
+
+  .btn-primary:disabled {
+    background: var(--bg-secondary);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .btn-secondary {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 500;
+    font-family: 'SF Pro Display', sans-serif;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 14px;
+  }
+
+  .btn-secondary:hover {
+    background: var(--bg-card-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px var(--shadow-color);
+  }
+
+  /* Input fields premium */
+  .input-field {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-family: 'SF Pro Display', sans-serif;
+    font-weight: 400;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    color: var(--text-primary);
+    font-size: 14px;
+  }
+
+  .input-field:focus {
+    outline: none;
+    border-color: rgba(102, 126, 234, 0.5);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    background: var(--bg-card-hover);
+  }
+
+  .input-field::placeholder {
+    color: var(--text-muted);
+  }
+
+  /* Drag handle */
+  .drag-handle {
+    cursor: grab;
+    color: var(--text-muted);
+    transition: all 0.2s ease;
+    padding: 4px;
+    border-radius: 6px;
+  }
+
+  .drag-handle:hover {
+    color: rgba(102, 126, 234, 0.8);
+    background: rgba(102, 126, 234, 0.1);
+  }
+
+  .drag-handle:active {
+    cursor: grabbing;
+  }
+
+  /* Tipografia */
+  .heading-primary {
+    font-family: 'Neulis Alt', 'SF Pro Text', sans-serif;
+    font-weight: 900;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .heading-secondary {
+    font-family: 'SF Pro Display', sans-serif;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+
+  .text-body {
+    font-family: 'SF Pro Display', sans-serif;
+    font-weight: 400;
+    color: var(--text-primary);
+  }
+
+  /* Animações */
+  .fade-in {
+    animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .slide-up {
+    animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Drop zones */
+  .drop-zone {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .drop-zone.drag-over {
+    background: rgba(102, 126, 234, 0.1);
+    border: 2px dashed rgba(102, 126, 234, 0.4);
+    transform: scale(1.02);
+  }
+
+  /* Clock styling */
+  .clock-display {
+    font-family: 'SF Pro Rounded', monospace;
+    font-weight: 400;
+    text-shadow: 0 2px 10px var(--shadow-color);
+    color: var(--text-primary);
+  }
+
+  /* Music Player Tabs */
+  .music-tab {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    color: var(--text-secondary);
+  }
+
+  .music-tab.active {
+    background: var(--bg-card);
+    box-shadow: 0 4px 15px var(--shadow-color);
+    transform: translateY(-1px);
+    color: var(--text-primary);
+  }
+
+  .music-tab:not(.active):hover {
+    background: var(--bg-secondary);
+    transform: translateY(-1px);
+    color: var(--text-primary);
+  }
+
+  /* Playlist selector */
+  .playlist-item {
+    transition: all 0.2s ease;
+    backdrop-filter: blur(5px);
+    color: var(--text-secondary);
+  }
+
+  .playlist-item:hover {
+    transform: translateX(4px);
+    color: var(--text-primary);
+  }
+
+  .playlist-item.active {
+    background: var(--bg-card);
+    box-shadow: 0 2px 10px var(--shadow-color);
+    color: var(--text-primary);
+  }
+
+  /* YouTube iframe styling */
+  .youtube-player {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px var(--shadow-color);
+  }
+
+  /* Spotify iframe styling */
+  .spotify-player {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px var(--shadow-color);
+  }
+
+  /* Tema específico para componentes */
+  .theme-dark .glass-card {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .theme-light .glass-card {
+    border-color: rgba(203, 213, 225, 0.3);
+  }
+
+  /* Ajustes para o layout compacto */
+  .compact-layout {
+    gap: 12px;
+  }
+
+  .compact-card {
+    padding: 16px;
+    border-radius: 10px;
+  }
+
+  .compact-text {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+} 
