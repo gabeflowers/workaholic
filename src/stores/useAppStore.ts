@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { Task, Note, SpotifyConfig, AppState } from '../types';
+import { Task, Note, AppState } from '../types';
 import { generateId } from '../utils/helpers';
 import { saveToStorage, loadFromStorage } from '../utils/storage';
 

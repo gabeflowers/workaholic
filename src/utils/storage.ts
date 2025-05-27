@@ -4,7 +4,7 @@ const STORAGE_KEY = 'productivity-panel-data';
 
 export const saveToStorage = (data: AppState): void => {
   try {
-    const serializedData = JSON.stringify(data, (key, value) => {
+    const serializedData = JSON.stringify(data, (_key, value) => {
       if (value instanceof Date) {
         return { __type: 'Date', value: value.toISOString() };
       }
@@ -21,7 +21,7 @@ export const loadFromStorage = (): AppState | null => {
     const serializedData = localStorage.getItem(STORAGE_KEY);
     if (!serializedData) return null;
     
-    const data = JSON.parse(serializedData, (key, value) => {
+    const data = JSON.parse(serializedData, (_key, value) => {
       if (value && typeof value === 'object' && value.__type === 'Date') {
         return new Date(value.value);
       }
