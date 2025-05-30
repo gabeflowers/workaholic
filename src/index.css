@@ -1,6 +1,6 @@
-/* Importar Inter font do Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
+/* Importar Inter font do Google Fonts */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
