@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAppStore } from './stores/useAppStore';
 import { Clock } from './components/Clock';
+import { Alarm } from './components/Alarm';
 import { KanbanBoard } from './components/KanbanBoard';
 import { AddTaskForm } from './components/AddTaskForm';
 import { NotesPanel } from './components/NotesPanel';
@@ -57,64 +58,76 @@ function App() {
 
   return (
     <div className={`min-h-screen p-4 transition-colors duration-300 ${isDarkMode ? 'theme-dark' : 'theme-light'}`}>
-      <div className="max-w-[1900px] mx-auto">
-        {/* Header compacto com título, relógio e controles */}
+      <div className="w-full max-w-none mx-auto">
+        {/* Header redesenhado - mais minimalista */}
         <header className="mb-4 fade-in">
-          <div className="flex items-center justify-between mb-3">
-            <div className="flex items-center gap-6">
-              <div>
-                <h1 className="heading-primary text-3xl mb-1">
-                  Painel de Produtividade
-                </h1>
-                <p className="heading-secondary text-sm opacity-80">
-                  Workspace inteligente para máxima produtividade
-                </p>
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-8">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+                  <span className="text-xl">⚡</span>
+                </div>
+                <div>
+                  <h1 className="heading-primary text-3xl mb-0">
+                    Workaholic
+                  </h1>
+                  <p className="text-large opacity-75">
+                    Produtividade com foco
+                  </p>
+                </div>
               </div>
-              <Clock />
+              <div className="hidden md:block">
+                <div className="flex items-center gap-3 relative">
+                  <Clock />
+                  <Alarm />
+                </div>
+              </div>
             </div>
             
-            <div className="flex items-center gap-3">
-              {/* Toggle de tema */}
+            <div className="flex items-center gap-2">
+              {/* Toggle de tema redesenhado */}
               <button
                 onClick={() => setIsDarkMode(!isDarkMode)}
-                className="glass-card p-2.5 hover:scale-105 transition-all duration-200"
+                className="glass-card p-3 hover:scale-105 transition-all duration-200 group"
                 title={`Alternar para tema ${isDarkMode ? 'claro' : 'escuro'} (Ctrl+Shift+T)`}
               >
-                <span className="text-lg">
+                <span className="text-xl group-hover:scale-110 transition-transform">
                   {isDarkMode ? '☀️' : '🌙'}
                 </span>
               </button>
               
-              {/* Botão de ajuda */}
+              {/* Botão de ajuda redesenhado */}
               <button
                 onClick={() => setShowHelp(true)}
-                className="glass-card p-2.5 hover:scale-105 transition-all duration-200"
+                className="glass-card p-3 hover:scale-105 transition-all duration-200 group"
                 title="Ajuda (pressione ?)"
               >
-                <span className="text-lg">❓</span>
+                <span className="text-xl group-hover:scale-110 transition-transform">❓</span>
               </button>
             </div>
           </div>
         </header>
 
-        {/* Layout principal otimizado - altura reduzida */}
-        <main className="grid grid-cols-12 gap-4 h-[calc(100vh-140px)]">
-          {/* Coluna esquerda - Kanban (65% da tela) */}
-          <section className="col-span-8 space-y-4 slide-up">
+        {/* Layout principal otimizado - ocupando toda a tela */}
+        <main className="grid grid-cols-12 gap-4 h-[calc(100vh-120px)]">
+          {/* Coluna esquerda - Kanban (75% da tela) */}
+          <section className="col-span-12 xl:col-span-9 flex flex-col slide-up">
             <AddTaskForm />
-            <KanbanBoard />
+            <div className="flex-1 min-h-0">
+              <KanbanBoard />
+            </div>
           </section>
 
-          {/* Coluna direita - Notas e Music Player (35% da tela) */}
-          <aside className="col-span-4 flex flex-col gap-4 slide-up" style={{ animationDelay: '0.1s' }}>
-            {/* Notas - altura fixa menor */}
-            <div className="h-[45%] min-h-[300px]">
-              <NotesPanel />
+          {/* Coluna direita - Notas e Music Player (25% da tela) */}
+          <aside className="col-span-12 xl:col-span-3 flex flex-col gap-4 slide-up" style={{ animationDelay: '0.1s' }}>
+            {/* Music Player - posição prioritária */}
+            <div className="h-[350px] min-h-[350px]">
+              <MusicPlayer />
             </div>
             
-            {/* Music Player - altura fixa menor */}
-            <div className="h-[55%] min-h-[320px]">
-              <MusicPlayer />
+            {/* Notas - altura flexível */}
+            <div className="flex-1 min-h-[300px]">
+              <NotesPanel />
             </div>
           </aside>
         </main>

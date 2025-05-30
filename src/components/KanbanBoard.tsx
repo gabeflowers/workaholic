@@ -17,6 +17,7 @@ export const KanbanBoard: React.FC = () => {
   const [activeTask, setActiveTask] = useState<Task | null>(null);
 
   const todoTasks = tasks.filter(task => task.status === 'todo');
+  const progressTasks = tasks.filter(task => task.status === 'progress');
   const doneTasks = tasks.filter(task => task.status === 'done');
 
   const handleDragStart = (event: DragStartEvent) => {
@@ -35,9 +36,9 @@ export const KanbanBoard: React.FC = () => {
     if (!activeTask) return;
 
     // Se foi solto em uma coluna diferente
-    if (over.id === 'todo' || over.id === 'done') {
+    if (over.id === 'todo' || over.id === 'progress' || over.id === 'done') {
       if (activeTask.status !== over.id) {
-        moveTask(activeTask.id, over.id as 'todo' | 'done');
+        moveTask(activeTask.id, over.id as 'todo' | 'progress' | 'done');
       }
     }
   };
@@ -46,11 +47,11 @@ export const KanbanBoard: React.FC = () => {
     <div className="glass-card p-6 h-full">
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-center gap-3">
-          <span className="text-3xl">📋</span>
+          <span className="text-4xl">📋</span>
           <div>
-            <h2 className="heading-secondary text-2xl mb-1">Kanban Board</h2>
-            <p className="text-white/70 text-sm">
-              {tasks.length} {tasks.length === 1 ? 'tarefa' : 'tarefas'} • {todoTasks.length} pendente{todoTasks.length !== 1 ? 's' : ''} • {doneTasks.length} concluída{doneTasks.length !== 1 ? 's' : ''}
+            <h2 className="heading-secondary text-3xl mb-1">Kanban Board</h2>
+            <p className="text-large text-white/70">
+              {tasks.length} {tasks.length === 1 ? 'tarefa' : 'tarefas'} • {todoTasks.length} pendente{todoTasks.length !== 1 ? 's' : ''} • {progressTasks.length} em progresso • {doneTasks.length} concluída{doneTasks.length !== 1 ? 's' : ''}
             </p>
           </div>
         </div>
@@ -61,11 +62,18 @@ export const KanbanBoard: React.FC = () => {
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
       >
-        <div className="flex gap-6 h-[calc(100%-120px)]">
+        <div className="flex gap-4 h-[calc(100%-120px)]">
           <TaskColumn
             title="A Fazer"
             status="todo"
             tasks={todoTasks}
+            onUpdateTask={updateTask}
+            onDeleteTask={deleteTask}
+          />
+          <TaskColumn
+            title="Em Progresso"
+            status="progress"
+            tasks={progressTasks}
             onUpdateTask={updateTask}
             onDeleteTask={deleteTask}
           />
@@ -78,9 +86,18 @@ export const KanbanBoard: React.FC = () => {
           />
         </div>
 
-        <DragOverlay>
+        <DragOverlay 
+          adjustScale={false}
+          dropAnimation={{
+            duration: 300,
+            easing: 'cubic-bezier(0.18, 0.67, 0.6, 1.22)',
+          }}
+          style={{
+            cursor: 'grabbing',
+          }}
+        >
           {activeTask ? (
-            <div className="task-card p-4 opacity-90 rotate-3 scale-105">
+            <div className="pointer-events-none">
               <TaskCard
                 task={activeTask}
                 onUpdate={() => {}}

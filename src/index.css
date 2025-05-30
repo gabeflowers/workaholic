@@ -1,3 +1,6 @@
+/* Importar Inter font do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -40,30 +43,74 @@
 
 /* Variáveis CSS para temas */
 :root {
-  /* Tema Dark (padrão) */
-  --bg-primary: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-  --bg-secondary: rgba(255, 255, 255, 0.1);
-  --bg-card: rgba(255, 255, 255, 0.15);
-  --bg-card-hover: rgba(255, 255, 255, 0.25);
+  /* Tema Dark (padrão) - Ultra Black */
+  --bg-primary: linear-gradient(135deg, #000000 0%, #0a0a0a 20%, #111111 50%, #0d1117 80%, #161b22 100%);
+  --bg-secondary: rgba(255, 255, 255, 0.05);
+  --bg-card: rgba(255, 255, 255, 0.08);
+  --bg-card-hover: rgba(255, 255, 255, 0.12);
   --text-primary: rgba(255, 255, 255, 0.95);
-  --text-secondary: rgba(255, 255, 255, 0.8);
-  --text-muted: rgba(255, 255, 255, 0.6);
-  --border-color: rgba(255, 255, 255, 0.2);
-  --shadow-color: rgba(0, 0, 0, 0.3);
-  --accent-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --text-secondary: rgba(255, 255, 255, 0.85);
+  --text-muted: rgba(255, 255, 255, 0.65);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --shadow-color: rgba(0, 0, 0, 0.8);
+  --accent-gradient: linear-gradient(135deg, #8b5cf6 0%, #ec4899 50%, #f59e0b 100%);
+  --player-bg: rgba(0, 0, 0, 0.4);
+  --player-border: rgba(139, 92, 246, 0.3);
+  
+  /* Cores para Cards de Tarefas - Mais Vibrantes */
+  --task-todo: linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(99, 102, 241, 0.2) 100%);
+  --task-todo-border: rgba(59, 130, 246, 0.4);
+  --task-progress: linear-gradient(135deg, rgba(251, 191, 36, 0.25) 0%, rgba(245, 158, 11, 0.2) 100%);
+  --task-progress-border: rgba(251, 191, 36, 0.4);
+  --task-done: linear-gradient(135deg, rgba(34, 197, 94, 0.25) 0%, rgba(101, 163, 13, 0.2) 100%);
+  --task-done-border: rgba(34, 197, 94, 0.4);
+  
+  /* Cores para Notas - Mais Sinalizáveis */
+  --note-yellow: linear-gradient(135deg, rgba(255, 235, 59, 0.3) 0%, rgba(255, 193, 7, 0.25) 100%);
+  --note-yellow-border: rgba(255, 193, 7, 0.5);
+  --note-blue: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(99, 102, 241, 0.25) 100%);
+  --note-blue-border: rgba(59, 130, 246, 0.5);
+  --note-green: linear-gradient(135deg, rgba(34, 197, 94, 0.3) 0%, rgba(101, 163, 13, 0.25) 100%);
+  --note-green-border: rgba(34, 197, 94, 0.5);
+  --note-purple: linear-gradient(135deg, rgba(139, 92, 246, 0.3) 0%, rgba(124, 58, 237, 0.25) 100%);
+  --note-purple-border: rgba(139, 92, 246, 0.5);
+  --note-pink: linear-gradient(135deg, rgba(236, 72, 153, 0.3) 0%, rgba(219, 39, 119, 0.25) 100%);
+  --note-pink-border: rgba(236, 72, 153, 0.5);
 }
 
 .theme-light {
-  --bg-primary: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);
-  --bg-secondary: rgba(255, 255, 255, 0.8);
-  --bg-card: rgba(255, 255, 255, 0.9);
-  --bg-card-hover: rgba(255, 255, 255, 0.95);
+  --bg-primary: linear-gradient(135deg, #ffffff 0%, #f8fafc 30%, #f1f5f9 70%, #e2e8f0 100%);
+  --bg-secondary: rgba(15, 23, 42, 0.04);
+  --bg-card: rgba(255, 255, 255, 0.95);
+  --bg-card-hover: rgba(255, 255, 255, 0.98);
   --text-primary: rgba(15, 23, 42, 0.95);
   --text-secondary: rgba(51, 65, 85, 0.9);
   --text-muted: rgba(100, 116, 139, 0.8);
-  --border-color: rgba(203, 213, 225, 0.6);
-  --shadow-color: rgba(0, 0, 0, 0.1);
-  --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  --border-color: rgba(203, 213, 225, 0.4);
+  --shadow-color: rgba(0, 0, 0, 0.08);
+  --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+  --player-bg: rgba(59, 130, 246, 0.05);
+  --player-border: rgba(59, 130, 246, 0.15);
+  
+  /* Cores para Cards de Tarefas - Modo Claro */
+  --task-todo: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(99, 102, 241, 0.1) 100%);
+  --task-todo-border: rgba(59, 130, 246, 0.25);
+  --task-progress: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(245, 158, 11, 0.1) 100%);
+  --task-progress-border: rgba(251, 191, 36, 0.25);
+  --task-done: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(101, 163, 13, 0.1) 100%);
+  --task-done-border: rgba(34, 197, 94, 0.25);
+  
+  /* Cores para Notas - Modo Claro */
+  --note-yellow: linear-gradient(135deg, rgba(255, 235, 59, 0.2) 0%, rgba(255, 193, 7, 0.15) 100%);
+  --note-yellow-border: rgba(255, 193, 7, 0.3);
+  --note-blue: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(99, 102, 241, 0.15) 100%);
+  --note-blue-border: rgba(59, 130, 246, 0.3);
+  --note-green: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(101, 163, 13, 0.15) 100%);
+  --note-green-border: rgba(34, 197, 94, 0.3);
+  --note-purple: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(124, 58, 237, 0.15) 100%);
+  --note-purple-border: rgba(139, 92, 246, 0.3);
+  --note-pink: linear-gradient(135deg, rgba(236, 72, 153, 0.2) 0%, rgba(219, 39, 119, 0.15) 100%);
+  --note-pink-border: rgba(236, 72, 153, 0.3);
 }
 
 @layer base {
@@ -73,13 +120,14 @@
   
   body {
     margin: 0;
-    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background: var(--bg-primary);
     color: var(--text-primary);
     min-height: 100vh;
     font-weight: 400;
+    font-size: 16px;
     transition: background 0.3s ease, color 0.3s ease;
   }
 
@@ -89,17 +137,17 @@
 
   /* Scrollbar personalizada */
   ::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
   }
 
   ::-webkit-scrollbar-track {
     background: var(--bg-secondary);
-    border-radius: 3px;
+    border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb {
     background: var(--border-color);
-    border-radius: 3px;
+    border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
@@ -139,6 +187,8 @@
     border-radius: 10px;
     box-shadow: 0 4px 20px var(--shadow-color);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
   }
 
   .task-card:hover {
@@ -147,57 +197,190 @@
     background: var(--bg-card-hover);
   }
 
-  /* Sticky notes com design premium */
+  /* Cards de tarefas com cores específicas por status */
+  .task-card.todo {
+    background: var(--task-todo);
+    border: 1px solid var(--task-todo-border);
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.2);
+  }
+
+  .task-card.todo:hover {
+    box-shadow: 0 8px 35px rgba(59, 130, 246, 0.3);
+    transform: translateY(-3px) scale(1.02);
+  }
+
+  .task-card.progress {
+    background: var(--task-progress);
+    border: 1px solid var(--task-progress-border);
+    box-shadow: 0 4px 20px rgba(251, 191, 36, 0.2);
+  }
+
+  .task-card.progress:hover {
+    box-shadow: 0 8px 35px rgba(251, 191, 36, 0.3);
+    transform: translateY(-3px) scale(1.02);
+  }
+
+  .task-card.done {
+    background: var(--task-done);
+    border: 1px solid var(--task-done-border);
+    box-shadow: 0 4px 20px rgba(34, 197, 94, 0.2);
+  }
+
+  .task-card.done:hover {
+    box-shadow: 0 8px 35px rgba(34, 197, 94, 0.3);
+    transform: translateY(-3px) scale(1.02);
+  }
+
+  /* Sticky notes estilo post-it realista */
   .note-card {
-    background: var(--bg-card);
-    backdrop-filter: blur(15px);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    box-shadow: 0 6px 25px var(--shadow-color);
+    backdrop-filter: blur(5px);
+    border-radius: 0;
+    box-shadow: 
+      0 4px 8px rgba(0, 0, 0, 0.1),
+      0 8px 16px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+    border: none;
+    transform: rotate(-1deg);
+    transform-origin: center;
+    min-height: 180px;
   }
 
   .note-card::before {
+    display: none;
+  }
+
+  .note-card::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: var(--accent-gradient);
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 15px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+  }
+
+  .note-card:nth-child(odd) {
+    transform: rotate(1deg);
+  }
+
+  .note-card:nth-child(even) {
+    transform: rotate(-0.5deg);
+  }
+
+  .note-card:nth-child(3n) {
+    transform: rotate(1.5deg);
   }
 
   .note-card:hover {
-    transform: translateY(-3px) scale(1.01);
-    box-shadow: 0 12px 40px var(--shadow-color);
-    background: var(--bg-card-hover);
+    transform: rotate(0deg) translateY(-8px) scale(1.03);
+    box-shadow: 
+      0 12px 24px rgba(0, 0, 0, 0.15),
+      0 20px 40px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    z-index: 20;
   }
 
-  /* Cores das notas com gradientes adaptativos */
+  /* Cores das notas estilo post-it com texturas */
   .note-yellow {
-    background: linear-gradient(135deg, rgba(255, 235, 59, 0.2) 0%, rgba(255, 193, 7, 0.15) 100%);
+    background: 
+      linear-gradient(45deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent),
+      linear-gradient(135deg, #ffeb3b 0%, #ffc107 100%);
+    background-size: 20px 20px, 100% 100%;
+    color: #333;
+    box-shadow: 
+      0 4px 8px rgba(255, 193, 7, 0.2),
+      0 8px 16px rgba(255, 193, 7, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
 
-  .note-yellow::before {
-    background: linear-gradient(90deg, #fbbf24, #f59e0b);
+  .note-yellow:hover {
+    box-shadow: 
+      0 12px 24px rgba(255, 193, 7, 0.25),
+      0 20px 40px rgba(255, 193, 7, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
   }
 
   .note-blue {
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(99, 102, 241, 0.15) 100%);
+    background: 
+      linear-gradient(45deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent),
+      linear-gradient(135deg, #64b5f6 0%, #1976d2 100%);
+    background-size: 20px 20px, 100% 100%;
+    color: #fff;
+    box-shadow: 
+      0 4px 8px rgba(25, 118, 210, 0.2),
+      0 8px 16px rgba(25, 118, 210, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
 
-  .note-blue::before {
-    background: linear-gradient(90deg, #3b82f6, #6366f1);
+  .note-blue:hover {
+    box-shadow: 
+      0 12px 24px rgba(25, 118, 210, 0.25),
+      0 20px 40px rgba(25, 118, 210, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
   }
 
   .note-green {
-    background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(101, 163, 13, 0.15) 100%);
+    background: 
+      linear-gradient(45deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent),
+      linear-gradient(135deg, #81c784 0%, #388e3c 100%);
+    background-size: 20px 20px, 100% 100%;
+    color: #fff;
+    box-shadow: 
+      0 4px 8px rgba(56, 142, 60, 0.2),
+      0 8px 16px rgba(56, 142, 60, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
 
-  .note-green::before {
-    background: linear-gradient(90deg, #22c55e, #65a30d);
+  .note-green:hover {
+    box-shadow: 
+      0 12px 24px rgba(56, 142, 60, 0.25),
+      0 20px 40px rgba(56, 142, 60, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+
+  .note-purple {
+    background: 
+      linear-gradient(45deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent),
+      linear-gradient(135deg, #ba68c8 0%, #7b1fa2 100%);
+    background-size: 20px 20px, 100% 100%;
+    color: #fff;
+    box-shadow: 
+      0 4px 8px rgba(123, 31, 162, 0.2),
+      0 8px 16px rgba(123, 31, 162, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .note-purple:hover {
+    box-shadow: 
+      0 12px 24px rgba(123, 31, 162, 0.25),
+      0 20px 40px rgba(123, 31, 162, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+
+  .note-pink {
+    background: 
+      linear-gradient(45deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent),
+      linear-gradient(135deg, #f06292 0%, #c2185b 100%);
+    background-size: 20px 20px, 100% 100%;
+    color: #fff;
+    box-shadow: 
+      0 4px 8px rgba(194, 24, 91, 0.2),
+      0 8px 16px rgba(194, 24, 91, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .note-pink:hover {
+    box-shadow: 
+      0 12px 24px rgba(194, 24, 91, 0.25),
+      0 20px 40px rgba(194, 24, 91, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
   }
 
   /* Botões premium */
@@ -289,24 +472,46 @@
 
   /* Tipografia */
   .heading-primary {
-    font-family: 'Neulis Alt', 'SF Pro Text', sans-serif;
-    font-weight: 900;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 2.5rem;
     background: var(--accent-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    letter-spacing: -0.02em;
   }
 
   .heading-secondary {
-    font-family: 'SF Pro Display', sans-serif;
-    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 1.25rem;
     color: var(--text-secondary);
+    letter-spacing: -0.01em;
   }
 
   .text-body {
-    font-family: 'SF Pro Display', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 400;
+    font-size: 1rem;
     color: var(--text-primary);
+    line-height: 1.6;
+  }
+
+  .text-large {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 1.125rem;
+    color: var(--text-primary);
+    line-height: 1.5;
+  }
+
+  .text-small {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.4;
   }
 
   /* Animações */
@@ -349,6 +554,40 @@
     background: rgba(102, 126, 234, 0.1);
     border: 2px dashed rgba(102, 126, 234, 0.4);
     transform: scale(1.02);
+  }
+
+  /* Drag Overlay Styles */
+  [data-dnd-context] .task-card {
+    cursor: grabbing !important;
+    transform: rotate(2deg) scale(1.03);
+    opacity: 0.98;
+    box-shadow: 
+      0 25px 50px rgba(0, 0, 0, 0.5),
+      0 10px 20px rgba(139, 92, 246, 0.3);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    pointer-events: none;
+  }
+
+  /* Drag Handle Styles */
+  .dragging {
+    opacity: 0.4 !important;
+    transform: scale(0.98) !important;
+    transition: all 200ms ease !important;
+  }
+
+  .dragging .task-card {
+    background: var(--bg-card-hover) !important;
+    border: 2px dashed var(--border-color) !important;
+  }
+
+  /* Melhor posicionamento do cursor durante drag */
+  .dnd-context {
+    cursor: grab;
+  }
+
+  .dnd-context.dragging {
+    cursor: grabbing;
   }
 
   /* Clock styling */
@@ -433,5 +672,293 @@
   .compact-text {
     font-size: 13px;
     line-height: 1.4;
+  }
+
+  /* Layout responsivo melhorado */
+  .layout-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 1024px) {
+    .layout-grid {
+      grid-template-columns: 2fr 1fr;
+    }
+  }
+
+  /* Formulário compacto */
+  .form-compact {
+    margin-bottom: 1rem;
+  }
+
+  .form-compact input,
+  .form-compact textarea {
+    transition: all 0.2s ease;
+  }
+
+  .form-compact input:focus,
+  .form-compact textarea:focus {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
+  }
+
+  /* Estilos para o Player Minimalista */
+  .lofi-player {
+    background: var(--player-bg);
+    border: 1px solid var(--player-border);
+    backdrop-filter: blur(25px);
+    box-shadow: 0 10px 40px var(--shadow-color);
+  }
+
+  .lofi-player:hover {
+    background: var(--bg-card-hover);
+    transform: translateY(-2px);
+  }
+
+  /* Controles do player */
+  .player-control {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+  }
+
+  .player-control:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .player-control.play-button {
+    background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+  }
+
+  .player-control.play-button:hover {
+    transform: scale(1.15);
+    box-shadow: 0 6px 30px rgba(139, 92, 246, 0.6);
+  }
+
+  /* Slider customizado */
+  .slider {
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    height: 4px;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(139, 92, 246, 0.5);
+    transition: all 0.2s ease;
+  }
+
+  .slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.7);
+  }
+
+  .slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 10px rgba(139, 92, 246, 0.5);
+  }
+
+  /* Playlist item melhorado */
+  .playlist-track {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .playlist-track::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, #8b5cf6, #ec4899);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+  }
+
+  .playlist-track.active::before {
+    transform: scaleY(1);
+  }
+
+  .playlist-track:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(8px);
+  }
+
+  .playlist-track.active {
+    background: linear-gradient(90deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.1));
+    border: 1px solid rgba(139, 92, 246, 0.3);
+  }
+
+  /* Visualizador de áudio */
+  .audio-visualizer {
+    display: flex;
+    align-items: end;
+    gap: 2px;
+    height: 40px;
+  }
+
+  .visualizer-bar {
+    width: 3px;
+    background: linear-gradient(to top, #8b5cf6, #ec4899, #f59e0b);
+    border-radius: 2px;
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+
+  .visualizer-bar:nth-child(odd) {
+    animation-delay: 0.1s;
+  }
+
+  .visualizer-bar:nth-child(even) {
+    animation-delay: 0.3s;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scaleY(0.3);
+      opacity: 0.7;
+    }
+    50% {
+      transform: scaleY(1);
+      opacity: 1;
+    }
+  }
+
+  /* Indicador de reprodução */
+  .now-playing {
+    animation: glow 2s infinite ease-in-out alternate;
+  }
+
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
+    }
+    to {
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.8);
+    }
+  }
+
+  /* Animação para botões */
+  .btn-animate {
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .btn-animate:active {
+    transform: scale(0.95);
+  }
+
+  /* Status bar do player */
+  .player-status {
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+  }
+
+  /* Ajustes para tema claro */
+  .theme-light .slider {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  .theme-light .player-status {
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  .theme-light .playlist-track:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  .theme-light .playlist-track.active {
+    background: linear-gradient(90deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.05));
+    border: 1px solid rgba(59, 130, 246, 0.2);
+  }
+
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .lofi-player {
+      padding: 12px;
+    }
+    
+    .player-control {
+      padding: 8px;
+    }
+    
+    .visualizer-bar {
+      width: 2px;
+    }
+  }
+
+  /* Alarm component styles */
+  .alarm-button {
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .alarm-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px var(--shadow-color);
+  }
+
+  .alarm-dropdown {
+    animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .alarm-ringing {
+    animation: alarmPulse 1s infinite ease-in-out;
+  }
+
+  @keyframes alarmPulse {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+    }
+    50% {
+      transform: scale(1.05);
+      box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+    }
+  }
+
+  /* Notification badge */
+  .alarm-badge {
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-4px);
+    }
+    60% {
+      transform: translateY(-2px);
+    }
   }
 } 

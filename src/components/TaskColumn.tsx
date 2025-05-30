@@ -6,7 +6,7 @@ import { SortableTaskCard } from './SortableTaskCard';
 
 interface TaskColumnProps {
   title: string;
-  status: 'todo' | 'done';
+  status: 'todo' | 'progress' | 'done';
   tasks: Task[];
   onUpdateTask: (id: string, updates: Partial<Task>) => void;
   onDeleteTask: (id: string) => void;
@@ -25,14 +25,50 @@ export const TaskColumn: React.FC<TaskColumnProps> = ({
 
   const taskIds = tasks?.map(task => task.id) || [];
 
+  const getColumnIcon = () => {
+    switch (status) {
+      case 'todo': return '📋';
+      case 'progress': return '⚡';
+      case 'done': return '✅';
+      default: return '📋';
+    }
+  };
+
+  const getEmptyIcon = () => {
+    switch (status) {
+      case 'todo': return '📝';
+      case 'progress': return '🚀';
+      case 'done': return '🎉';
+      default: return '📝';
+    }
+  };
+
+  const getEmptyTitle = () => {
+    switch (status) {
+      case 'todo': return 'Nenhuma tarefa pendente';
+      case 'progress': return 'Nenhuma tarefa em progresso';
+      case 'done': return 'Nenhuma tarefa concluída';
+      default: return 'Nenhuma tarefa';
+    }
+  };
+
+  const getEmptySubtitle = () => {
+    switch (status) {
+      case 'todo': return 'Adicione uma nova tarefa para começar';
+      case 'progress': return 'Mova tarefas para cá quando começar a trabalhar nelas';
+      case 'done': return 'Complete algumas tarefas para vê-las aqui';
+      default: return '';
+    }
+  };
+
   return (
     <div className="flex-1">
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-center gap-3">
           <h3 className="heading-secondary text-2xl">
-            {status === 'todo' ? '📋' : '✅'} {title}
+            {getColumnIcon()} {title}
           </h3>
-          <span className="text-sm text-white/70 bg-white/20 px-3 py-1 rounded-full backdrop-blur-sm">
+          <span className="text-base text-white/70 bg-white/20 px-3 py-1 rounded-full backdrop-blur-sm">
             {tasks.length}
           </span>
         </div>
@@ -61,17 +97,14 @@ export const TaskColumn: React.FC<TaskColumnProps> = ({
             ))
           ) : (
             <div className="flex flex-col items-center justify-center h-40 text-white/60">
-              <div className="text-4xl mb-3">
-                {status === 'todo' ? '📝' : '🎉'}
+              <div className="text-5xl mb-4">
+                {getEmptyIcon()}
               </div>
-              <p className="text-lg mb-1">
-                {status === 'todo' ? 'Nenhuma tarefa pendente' : 'Nenhuma tarefa concluída'}
+              <p className="text-xl mb-2">
+                {getEmptyTitle()}
               </p>
-              <p className="text-sm opacity-75">
-                {status === 'todo' 
-                  ? 'Adicione uma nova tarefa para começar' 
-                  : 'Complete algumas tarefas para vê-las aqui'
-                }
+              <p className="text-base opacity-75 text-center max-w-xs">
+                {getEmptySubtitle()}
               </p>
             </div>
           )}

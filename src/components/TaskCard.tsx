@@ -40,13 +40,13 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onUpdate, onDelete, dr
 
   if (isEditing) {
     return (
-      <div className="task-card p-4 fade-in">
+      <div className={`task-card ${task.status} p-4 fade-in`}>
         <input
           type="text"
           value={editTitle}
           onChange={(e) => setEditTitle(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="input-field mb-3 text-base font-medium"
+          className="input-field mb-3 text-lg font-medium"
           placeholder="📝 Título da tarefa"
           autoFocus
         />
@@ -54,25 +54,25 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onUpdate, onDelete, dr
           value={editDescription}
           onChange={(e) => setEditDescription(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="input-field mb-3 text-sm resize-none"
+          className="input-field mb-3 text-base resize-none"
           placeholder="💭 Descrição (opcional)"
-          rows={2}
+          rows={3}
         />
         <div className="flex justify-between items-center">
-          <div className="text-xs text-gray-500 flex items-center gap-1">
+          <div className="text-sm text-white/60 flex items-center gap-1">
             <span>💾</span>
             <span>Ctrl+Enter para salvar</span>
           </div>
           <div className="flex gap-2">
             <button
               onClick={handleCancel}
-              className="btn-secondary text-xs px-3 py-1.5"
+              className="btn-secondary text-sm px-3 py-1.5"
             >
               Cancelar
             </button>
             <button
               onClick={handleSave}
-              className="btn-primary text-xs px-3 py-1.5"
+              className="btn-primary text-sm px-3 py-1.5"
               disabled={!editTitle.trim()}
             >
               Salvar
@@ -85,7 +85,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onUpdate, onDelete, dr
 
   return (
     <div 
-      className="task-card p-4 group cursor-pointer"
+      className={`task-card ${task.status} p-4 group cursor-pointer`}
       onDoubleClick={() => setIsEditing(true)}
     >
       <div className="flex justify-between items-start mb-2">
@@ -100,11 +100,11 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onUpdate, onDelete, dr
             </div>
           )}
           <div className="flex-1">
-            <h4 className="font-semibold text-gray-800 text-base mb-1 leading-tight">
+            <h4 className="font-semibold text-white text-lg mb-1 leading-tight">
               {task.title}
             </h4>
             {task.description && (
-              <p className="text-gray-600 text-sm leading-relaxed">{task.description}</p>
+              <p className="text-white/80 text-base leading-relaxed">{task.description}</p>
             )}
           </div>
         </div>
@@ -114,10 +114,10 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onUpdate, onDelete, dr
               e.stopPropagation();
               setIsEditing(true);
             }}
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+            className="p-2 hover:bg-white/10 rounded-lg transition-colors duration-200"
             title="Editar (duplo clique)"
           >
-            <span className="text-base">✏️</span>
+            <span className="text-lg">✏️</span>
           </button>
           <button
             onClick={(e) => {
@@ -126,20 +126,20 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onUpdate, onDelete, dr
                 onDelete(task.id);
               }
             }}
-            className="p-2 hover:bg-red-100 rounded-lg transition-colors duration-200"
+            className="p-2 hover:bg-red-500/20 rounded-lg transition-colors duration-200"
             title="Excluir"
           >
-            <span className="text-base text-red-600">🗑️</span>
+            <span className="text-lg text-red-400">🗑️</span>
           </button>
         </div>
       </div>
       
-      <div className="flex items-center justify-between mt-3 pt-2 border-t border-gray-100">
-        <div className="text-xs text-gray-500 flex items-center gap-1">
+      <div className="flex items-center justify-between mt-3 pt-2 border-t border-white/20">
+        <div className="text-sm text-white/60 flex items-center gap-1">
           {task.status === 'done' ? (
             <>
               <span>✅</span>
-                             <span>Concluída em {formatDateSafe(task.completedAt || task.createdAt)}</span>
+              <span>Concluída em {formatDateSafe(task.completedAt || task.createdAt)}</span>
             </>
           ) : (
             <>
@@ -149,12 +149,17 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onUpdate, onDelete, dr
           )}
         </div>
         {task.status === 'todo' && (
-          <div className="text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded-full">
+          <div className="text-sm text-blue-200 bg-blue-500/20 px-2 py-1 rounded-full">
             Pendente
           </div>
         )}
+        {task.status === 'progress' && (
+          <div className="text-sm text-yellow-200 bg-yellow-500/20 px-2 py-1 rounded-full">
+            Em Andamento
+          </div>
+        )}
         {task.status === 'done' && (
-          <div className="text-xs text-green-600 bg-green-50 px-2 py-1 rounded-full">
+          <div className="text-sm text-green-200 bg-green-500/20 px-2 py-1 rounded-full">
             Concluída
           </div>
         )}

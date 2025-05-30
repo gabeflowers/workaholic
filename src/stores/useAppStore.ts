@@ -8,10 +8,10 @@ interface AppStore extends AppState {
   addTask: (title: string, description?: string) => void;
   updateTask: (id: string, updates: Partial<Task>) => void;
   deleteTask: (id: string) => void;
-  moveTask: (id: string, status: 'todo' | 'done') => void;
+  moveTask: (id: string, status: 'todo' | 'progress' | 'done') => void;
   
   // Note actions
-  addNote: (content: string, title?: string, color?: 'yellow' | 'blue' | 'green') => void;
+  addNote: (content: string, title?: string, color?: 'yellow' | 'blue' | 'green' | 'purple' | 'pink') => void;
   updateNote: (id: string, updates: Partial<Note>) => void;
   deleteNote: (id: string) => void;
   
@@ -69,7 +69,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
     get().saveData();
   },
   
-  moveTask: (id: string, status: 'todo' | 'done') => {
+  moveTask: (id: string, status: 'todo' | 'progress' | 'done') => {
     const updates: Partial<Task> = { status };
     if (status === 'done') {
       updates.completedAt = new Date();
@@ -81,7 +81,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
   },
   
   // Note actions
-  addNote: (content: string, title?: string, color: 'yellow' | 'blue' | 'green' = 'yellow') => {
+  addNote: (content: string, title?: string, color: 'yellow' | 'blue' | 'green' | 'purple' | 'pink' = 'yellow') => {
     const newNote: Note = {
       id: generateId(),
       title,

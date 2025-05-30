@@ -2,7 +2,7 @@ export interface Task {
   id: string;
   title: string;
   description?: string;
-  status: 'todo' | 'done';
+  status: 'todo' | 'progress' | 'done';
   createdAt: Date;
   completedAt?: Date;
 }
@@ -11,7 +11,7 @@ export interface Note {
   id: string;
   title?: string;
   content: string;
-  color: 'yellow' | 'blue' | 'green';
+  color: 'yellow' | 'blue' | 'green' | 'purple' | 'pink';
   createdAt: Date;
   updatedAt: Date;
 }

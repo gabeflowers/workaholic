@@ -22,18 +22,25 @@ export const SortableTaskCard: React.FC<SortableTaskCardProps> = ({
     transform,
     transition,
     isDragging,
-  } = useSortable({ id: task.id });
+  } = useSortable({ 
+    id: task.id,
+    transition: {
+      duration: 200,
+      easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
+    },
+  });
 
   const style = {
     transform: CSS.Transform.toString(transform),
-    transition,
-    opacity: isDragging ? 0.5 : 1,
+    transition: transition || 'transform 200ms ease',
+    zIndex: isDragging ? 1000 : 'auto',
   };
 
   return (
     <div
       ref={setNodeRef}
       style={style}
+      className={isDragging ? 'dragging' : ''}
       {...attributes}
     >
       <TaskCard
