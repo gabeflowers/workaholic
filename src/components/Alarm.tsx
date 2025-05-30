@@ -19,7 +19,6 @@ export const Alarm: React.FC = () => {
   const [isRinging, setIsRinging] = useState(false);
   const [currentRingingAlarm, setCurrentRingingAlarm] = useState<AlarmData | null>(null);
   const [lastTriggeredAlarm, setLastTriggeredAlarm] = useState<string | null>(null);
-  const audioRef = useRef<HTMLAudioElement>(null);
   const soundTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const autoStopTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -45,7 +44,6 @@ export const Alarm: React.FC = () => {
     const timer = setInterval(() => {
       const now = new Date();
       const currentTime = formatTime(now).slice(0, 5); // HH:MM format
-      const currentKey = `${currentTime}-${now.getDate()}-${now.getMonth()}-${now.getFullYear()}`;
 
       alarms.forEach((alarm, index) => {
         const alarmKey = `${alarm.time}-${now.getDate()}-${now.getMonth()}-${now.getFullYear()}-${index}`;
@@ -86,20 +84,7 @@ export const Alarm: React.FC = () => {
     // Auto-desligar após 30 segundos
     autoStopTimeoutRef.current = setTimeout(() => {
       stopRinging();
-      
-      // Opcional: desativar o alarme após disparar (comportamento típico de despertador)
-      // Descomente a linha abaixo se quiser que o alarme se desative automaticamente
-      // disableAlarmAfterRing(alarm);
     }, 30000);
-  };
-
-  // Função para desativar um alarme específico após tocar
-  const disableAlarmAfterRing = (triggeredAlarm: AlarmData) => {
-    setAlarms(prev => prev.map(alarm => 
-      alarm.time === triggeredAlarm.time && alarm.label === triggeredAlarm.label
-        ? { ...alarm, isActive: false }
-        : alarm
-    ));
   };
 
   const playAlarmSound = () => {
