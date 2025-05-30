@@ -3,7 +3,15 @@ import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    {
+      name: 'html-transform',
+      transformIndexHtml(html) {
+        return html.replace('/vite.svg', '/workaholic/vite.svg')
+      }
+    }
+  ],
   base: '/workaholic/',
   server: {
     port: 3000,
@@ -22,5 +30,9 @@ export default defineConfig({
         }
       }
     }
+  },
+  // Configurações específicas para GitHub Pages
+  define: {
+    __BASE_URL__: '"/workaholic/"'
   }
 }) 
